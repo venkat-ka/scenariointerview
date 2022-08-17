@@ -1,0 +1,5 @@
+com/scenario/interview/entity/UserModel.class
+com/scenario/interview/service/Userservice.class
+com/scenario/interview/ScenarioInterviewApplication.class
+com/scenario/interview/entity/UsersEntity.class
+com/scenario/interview/entity/UserRepo.class
