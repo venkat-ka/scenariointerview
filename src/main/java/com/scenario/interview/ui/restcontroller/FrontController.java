@@ -33,7 +33,7 @@ public class FrontController {
 
 	@GetMapping("/")
 	public String getHome() {
-		return "UpdateSec Helloworld";
+		return "UpdateThird success Helloworld";
 	}
 
 	@GetMapping(path = "/feedrow")
