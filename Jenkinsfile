@@ -9,13 +9,9 @@ pipeline {
 		stage('Checkout'){
 			steps{
 				sh 'mvn --version'
-				sh 'docker --version'
+				sh 'docker version'
 				echo "Build"
-				echo "path - $PATH"
-				echo "buildowner - $env.BUILD_NUMER"
-				echo "branch name -  $env.BRANCH_NAME"
-				echo "Docker Image - $docker.Image.id"
-				echo "Branch Name - $env.BRANCH_NAME"
+				
 
 			}
 		}
