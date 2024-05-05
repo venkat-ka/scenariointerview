@@ -53,7 +53,7 @@ public class FrontController {
 	@GetMapping(path = "/id/{id}")
 	public ResponseEntity<?> getById(@PathVariable Long id) {
 		Optional<UsersEntity> usr = repo.findById(id);
-		if (!usr.isEmpty()) {
+		if (usr.isPresent()) {
 			String usename = Optional.ofNullable(usr.get().getFirstName()).orElse("Anonymus");
 			String orelseGet = Optional.ofNullable(usr.get().getFirstName())
 					.orElseGet(() -> "can be sep fun or Anonymus");
@@ -81,7 +81,13 @@ public class FrontController {
 	public ResponseEntity<?> getAll() {
 		Department dpr = new Department("BCA", "computerblock");
 		StudentsDetails imSt = new StudentsDetails("sstn", 33, dpr);
+		System.out.println("Setting in First in Imm cl");
 		System.out.println(imSt.toString());
+		imSt.getDepartment().setDepartmentname("Change Bca");
+		imSt.getDepartment().setBlockname("Change Computerblock");
+		System.out.println("Checking in Second is still in Imm cl");
+		System.out.println(imSt.toString());
+		
 		return new ResponseEntity<List<UsersEntity>>(repo.findAll(), HttpStatus.OK);
 	}
 
