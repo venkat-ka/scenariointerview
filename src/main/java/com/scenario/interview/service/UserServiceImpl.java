@@ -1,6 +1,7 @@
 package com.scenario.interview.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.scenario.interview.entity.UserModel;
@@ -48,11 +50,22 @@ public class UserServiceImpl implements Userservice {
 		List<UserModel> userDetils = new ArrayList<UserModel>();
 		List<UsersEntity> userenty = userRepo.findAll().stream().collect(Collectors.toList());
 		Set<Integer> UniqueSalay = new HashSet<Integer>();
+		Set<Integer> secUniqueSalay = new HashSet<Integer>();
 		Set<UsersEntity> usrEnty = userenty.stream().filter(e -> !UniqueSalay.add(e.getSalary()))
 				// .map(e -> e.getSalary())
 				// .filter(e -> )
 				.collect(Collectors.toSet());
 		System.out.println(UniqueSalay);
+		//System.out.println(usrEnty);
+		
+		System.out.println("checkinganother to get duplicated");
+		
+ userenty.stream().filter(e -> !secUniqueSalay.add(e.getSalary()))
+				.map(y->y.getSalary())
+				// .filter(e -> )
+				.forEach(System.out::println);
+		
+		
 		ModelMapper userModel = new ModelMapper();
 		userModel.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		// UserModel userModelMap = userModel.map(userenty, UserModel.class);
@@ -100,5 +113,34 @@ public class UserServiceImpl implements Userservice {
 		}
 		return prepareRest;
 	}
-
+	
+	@Override
+	public String validateAnagram() {
+		String k = "listen";
+		String m = "silent";
+		char[] s = k.toCharArray();
+		char[] s2 = m.toCharArray();
+		if(k.length() != m.length()) {
+			return "Not Anagram";
+		}
+		
+		Arrays.sort(s);
+		Arrays.sort(s2);
+		System.out.println(k.length() + "=="+ m.length());
+		if(this.checinlp(s,  s2, k)) {
+			return "Anagram";
+		}
+		//char m = findNameCharDuplicate(null, s2)
+		return "not Anagram";
+	}
+	
+	public boolean checinlp(char[] s, char[] s2, String k) {
+		for(int i=0; i<k.length(); i++) {
+			if(s[i] != s2[i])
+				return false;
+			
+			
+		}
+		return true;
+	}
 }

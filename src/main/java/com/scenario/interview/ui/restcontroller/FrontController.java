@@ -35,13 +35,24 @@ public class FrontController {
 	public String getHome() {
 		return "Update Fifth check to to check automation  success Helloworld";
 	}
-
+	
+	
+	@GetMapping("/anagram")
+	public ResponseEntity<?>  getValidate() {
+		String res = "Anagrram";
+		 res = userservice.validateAnagram();
+		return new ResponseEntity<>(res, HttpStatus.OK);
+	}
+	
+	
 	@GetMapping(path = "/feedrow")
 	public ResponseEntity<?> insertRow() {
 		UserModel userdetails = new UserModel("Venkat", "Krish", 5000);
+		UserModel thuserdetails = new UserModel("thVenkat", "Krish", 5001);
 		UserModel userdetailsSec = new UserModel("SecVenkat", "Krish", 10923);
 		UserModel userdetailsthrd = new UserModel(null, "null check", 10923);
 		userservice.createUser(userdetails);
+		userservice.createUser(thuserdetails);
 		userservice.createUser(userdetailsSec);
 		userservice.createUser(userdetailsthrd);
 		return new ResponseEntity<>(userdetails, HttpStatus.OK);
@@ -95,6 +106,8 @@ public class FrontController {
 	public void getdoubleLock() {
 		doublelock.getinput();
 	}
+	
+	
 }
 
 /*

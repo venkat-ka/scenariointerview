@@ -16,6 +16,7 @@ final public class StudentsDetails {
 	}
 
 	public Department getDepartment() {
+		// this statement will make a immutable as like
 		return Department.getInstance(department);
 	}
 
@@ -25,3 +26,9 @@ final public class StudentsDetails {
 	}
 
 }
+
+/* Rules for immutable class 
+ * class will public final
+ * field constructor will be public and no final
+ * class fields will be private final.
+ */

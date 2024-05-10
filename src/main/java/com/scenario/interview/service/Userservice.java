@@ -11,5 +11,6 @@ public interface Userservice {
 	List<UserModel> findDuplicatesOneLevel();
 
 	List<HashMap<?, ?>> findNameCharDuplicate(Long id, String name);
-
+	
+	public String validateAnagram();
 }
